@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<canvas height="500" width="800" style="border: 1px solid #ccc;"></canvas>
+</body>
+<script>
+  var cs=document.querySelector('canvas');
+  var ctx=cs.getContext('2d');
+  var birdImg=new Image();
+  var w=52;
+  var h=45;
+  //起始位置
+  var x=50;
+  var y=50
+  var a=0.0005;//加速度
+  var startTime=new Date();//起始时间
+  var endTime=0;
+  var Dvalue=0;
+  var speed=0;
+
+  birdImg.src='imgs/birds.png';
+
+
+
+  //定时器写运动的小鸟
+    birdImg.onload= function () {
+   var timer=null;
+   var i=0;//控制选取哪个位置的小鸟
+   timer=setInterval(function () {
+     endTime=new Date();
+     Dvalue=endTime-startTime;
+     console.log(Dvalue);
+     speed=speed+a*Dvalue;
+     y+=speed*Dvalue+1/2*a*Dvalue*Dvalue;
+     startTime=endTime;
+   ctx.clearRect(0,0,cs.width,cs.height);
+   ctx.drawImage(birdImg,i*w,0,w,h,x,y,w,h);
+   i++;
+   i%=3;
+
+   },30);
+   }
+
+
+
+
+</script>
+</html>

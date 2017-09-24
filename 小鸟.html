@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<canvas height="500" width="800" style="border: 1px solid #ccc;"></canvas>
+</body>
+<script>
+  var cs=document.querySelector('canvas');
+  var ctx=cs.getContext('2d');
+  var birdImg=new Image();
+  var w=52,
+      h=45;
+  birdImg.src='imgs/birds.png';
+  /*birdImg.onload= function () {
+    ctx.drawImage(birdImg,0,0,w,h,50,50,w,h);
+  }*/
+
+
+//定时器写运动的小鸟
+/*  birdImg.onload= function () {
+    var timer=null;
+    var i=0;//控制选取哪个位置的小鸟
+    timer=setInterval(function () {
+      ctx.clearRect(0,0,cs.width,cs.height);
+      ctx.drawImage(birdImg,i*w,0,w,h,50,50,w,h);
+      i++;
+      i%=3;
+
+    },100);
+  }*/
+
+
+  //requastAnimationFrame()
+
+  birdImg.onload= function () {
+    var i=0;
+    function render(){
+      ctx.clearRect(0,0,cs.width,cs.height);
+      ctx.drawImage(birdImg,i*w,0,w,h,50,50,w,h);
+      i++;
+      i%=3;
+      window.requestAnimationFrame(render);
+    }
+    render();
+  }
+
+</script>
+</html>

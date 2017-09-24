@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<canvas height="500" width="800" style="border: 1px solid #cccccc;"></canvas>
+</body>
+<script>
+  var cs=document.querySelector('canvas');
+  var ctx=cs.getContext('2d');
+  var landImg=new Image();
+  landImg.src='imgs/land.png';
+  var h=112;
+  var w=336
+  var x=0;
+  var y=cs.height-h;
+  var num=Math.ceil(cs.width/w);
+  landImg.onload= function () {
+    var j=0;
+    var timer=null;
+    timer= setInterval(function () {
+      ctx.clearRect(0,0,cs.width,cs.height);
+      for(var i=0;i<=num;i++){
+        x=w*i-j;
+        if(x<-w){
+          x=w*(num+1);
+        }
+        ctx.drawImage(landImg,x,y);
+      }
+
+      j+=5;
+      if(j>w){
+        j=0;
+      }
+    },50);
+
+
+
+  }
+
+
+</script>
+</html>
